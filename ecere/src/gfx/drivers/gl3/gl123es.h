@@ -8,46 +8,7 @@
    #endif
 #endif
 
-#if defined(_GLES2)
-   #include <GLES2/gl2.h>
-#elif defined(_GLES)
-/*
-#define uint _uint
-#define property _property
-#define new _new
-#define class _class
-#define Window    X11Window
-#define Cursor    X11Cursor
-#define Font      X11Font
-#define Display   X11Display
-#define Time      X11Time
-#define KeyCode   X11KeyCode
-#define Picture   X11Picture
-#define Bool      X11Bool
-*/
-   #define GL_GLEXT_PROTOTYPES
-   #include <GLES/gl.h>
-   #include <GLES/glext.h>
-
-/*
-#undef Bool
-#undef Picture
-#undef Window
-#undef Cursor
-#undef Font
-#undef Display
-#undef Time
-#undef KeyCode
-#undef uint
-#undef new
-#undef property
-#undef class
-*/
-#else
-   #define Polygon _Polygon
-   #include <gl_compat_4_4.h>
-   #undef Polygon
-#endif
+#include "gl.h"
 
 #ifdef _GLES
    // Frame Buffer Extensions

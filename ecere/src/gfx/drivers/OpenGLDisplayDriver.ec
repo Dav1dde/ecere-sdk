@@ -97,11 +97,6 @@ namespace gfx::drivers;
       #undef class
       #undef pointer
 
-      #if !defined(__APPLE__)
-      default GLAPI void APIENTRY glLockArraysEXT (GLint first, GLsizei count);
-      default GLAPI void APIENTRY glUnlockArraysEXT (void);
-      #endif
-
       import "XInterface"
 
       // We were using PBUFFER for alpha compositing on Linux before, but it does not seem to work, nor be required anymore.
@@ -872,7 +867,7 @@ class OpenGLDisplayDriver : DisplayDriver
                      {
                         wglMakeCurrent(oglSystem.hdc, oglSystem.glrc);
 
-                        ogl_LoadFunctions();
+                        gladLoaderLoadGL();
                         oglSystem.version = ogl_GetMajorVersion();
 
 #ifdef _DEBUG
@@ -1086,8 +1081,8 @@ class OpenGLDisplayDriver : DisplayDriver
       bool result = true;
 
 #if !defined(__ANDROID__) && !defined(__EMSCRIPTEN__) && !defined(__ODROID__)
-      if(loadExtensions && ogl_LoadFunctions() == ogl_LOAD_FAILED)
-         PrintLn("ogl_LoadFunctions() failed!");
+      if(loadExtensions && !gladLoaderLoadGL())
+         PrintLn("gladLoaderLoadGL() failed!");
       CheckCapabilities(oglSystem, oglDisplay, canCheckExtensions);
 #endif
 
@@ -1276,7 +1271,7 @@ class OpenGLDisplayDriver : DisplayDriver
             wglShareLists(oglSystem.glrc, oglDisplay.glrc);
             wglMakeCurrent(oglDisplay.hdc, oglDisplay.glrc);
 
-            ogl_LoadFunctions();
+            gladLoaderLoadGL();
             oglDisplay.version = ogl_GetMajorVersion();
 
             result = true;

@@ -264,7 +264,7 @@ _OBJECTS = \
 	$(OBJ)harfbuzz-tibetan.o \
 	$(OBJ)harfbuzz-impl.o \
 	$(OBJ)harfbuzz-thai.o \
-	$(OBJ)gl_compat_4_4.o \
+	$(OBJ)gl.o \
 	$(if $(DISABLE_GL),,$(OBJ)cc$(O)) \
 	$(if $(DISABLE_GL),,$(OBJ)ccstr$(O)) \
 	$(if $(DISABLE_GL),,$(OBJ)mm$(O)) \
@@ -298,7 +298,7 @@ SOURCES = $(ECSOURCES) \
 	src/gfx/drivers/harfbuzz/harfbuzz-tibetan.c \
 	src/gfx/drivers/harfbuzz/harfbuzz-impl.c \
 	src/gfx/drivers/harfbuzz/harfbuzz-thai.c \
-	src/gfx/drivers/gl3/gl_compat_4_4.c \
+	src/gfx/drivers/gl3/gl.c \
 	$(if $(DISABLE_GL),,src/gfx/newFonts/cc/cc.c) \
 	$(if $(DISABLE_GL),,src/gfx/newFonts/cc/ccstr.c) \
 	$(if $(DISABLE_GL),,src/gfx/newFonts/cc/mm.c) \
@@ -2045,8 +2045,8 @@ $(OBJ)Timer.o: $(OBJ)Timer.c
 $(OBJ)typeEdit.o: $(OBJ)typeEdit.c
 	$(CC) $(CFLAGS) $(PRJ_CFLAGS) -c $(OBJ)typeEdit.c -o $(OBJ)typeEdit.o
 
-$(OBJ)gl_compat_4_4.o: src/gfx/drivers/gl3/gl_compat_4_4.c
-	$(CC) $(CFLAGS) $(PRJ_CFLAGS) -c src/gfx/drivers/gl3/gl_compat_4_4.c -o $(OBJ)gl_compat_4_4.o
+$(OBJ)gl.o: src/gfx/drivers/gl3/gl.c
+	$(CC) $(CFLAGS) $(PRJ_CFLAGS) -c src/gfx/drivers/gl3/gl.c -o $(OBJ)gl.o
 
 $(OBJ)glab.o: $(OBJ)glab.c
 	$(CC) $(CFLAGS) $(PRJ_CFLAGS) -c $(OBJ)glab.c -o $(OBJ)glab.o
